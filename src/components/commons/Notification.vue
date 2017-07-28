@@ -37,7 +37,7 @@ export default {
   z-index: 101;
   top: 0;
   right: 0;
-  width: 600px;
+  width: 30em;
   margin-top: 1em;
   margin-right: 0.5em;
 }

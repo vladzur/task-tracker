@@ -1,12 +1,13 @@
 <template>
   <div class="field">
     <label class="label" v-if="label">{{ label }}</label>
-    <p class="control" :class="{'has-icons-left': iconLeft}">
-      <input ref="input" class="input" :type="type" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)">
+    <div class="control" :class="{'has-icons-left': iconLeft}">
+      <input v-if="type !== 'textarea'" ref="input" class="input" :type="type" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)">
+      <textarea v-if="type == 'textarea'" ref="input" class="textarea" :placeholder="placeholder" :value="value" @input="updateValue($event.target.value)"></textarea>
       <span class="icon is-small is-left" v-if="iconLeft">
         <i class="fa" :class="icon"></i>
       </span>
-    </p>
+    </div>
   </div>
 </template>
 
@@ -27,18 +28,19 @@ export default {
       type: String,
       default: ''
     },
-    iconLeft: {
-      type: Boolean,
-      default: false
-    },
     icon: {
       type: String,
-      default: 'fa-user'
+      default: ''
     }
   },
   methods: {
-    updateValue (value) {
+    updateValue: function (value) {
       this.$emit('input', value)
+    }
+  },
+  computed: {
+    iconLeft () {
+      return this.icon !== ''
     }
   }
 }

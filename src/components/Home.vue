@@ -1,21 +1,21 @@
 <template>
   <div class="columns">
     <div class="column is-2">
-      <div class="box full-height">
+      <div class="box expand-height">
         <h1 class="title">New Task</h1>
         <vz-input placeholder="Name" v-model="task.name"></vz-input>
-        <vz-input placeholder="Description" v-model="task.text"></vz-input>
+        <vz-input type="textarea" placeholder="Description" v-model="task.text"></vz-input>
         <a class="button is-primary" @click="saveTask">Add</a>
       </div>
     </div>
     <div class="column">
       <h1 class="title">Task List</h1>
-      <vz-search-input v-model="filterKey"></vz-search-input>
+      <vz-input v-model="filterKey" icon="fa-search"></vz-input>
       <list :data="taskList" :columns="columns" :filterKey="filterKey" @itemSelected="showElement"/>
     </div>
     <modal-card :class="{'is-active': showModal}" @ok="updateTask" @close="closeModal">
       <vz-input placeholder="Name" v-model="currentTask.name"></vz-input>
-      <vz-input placeholder="Description" v-model="currentTask.text"></vz-input>
+      <vz-input type="textarea" placeholder="Description" v-model="currentTask.text"></vz-input>
     </modal-card>
   </div>
 </template>
@@ -74,7 +74,5 @@ export default {
 </script>
 
 <style>
-.full-height {
-  min-height: 76vh;
-}
+
 </style>
