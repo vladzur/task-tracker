@@ -1,5 +1,6 @@
 export const ADD_TASK = 'ADD_TASK'
 export const EDIT_TASK = 'EDIT_TASK'
+export const FETCH_TASKS = 'FETCH_TASKS'
 export const SET_MESSAGE = 'SET_MESSAGE'
 export const SHOW_MESSAGE = 'SHOW_MESSAGE'
 export const HIDE_MESSAGE = 'HIDE_MESSAGE'

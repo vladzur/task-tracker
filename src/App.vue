@@ -27,7 +27,10 @@ export default {
     ...mapGetters(['getMessage', 'getShowMessage'])
   },
   methods: {
-    ...mapActions(['closeMessage'])
+    ...mapActions(['closeMessage', 'fetchTasks'])
+  },
+  mounted () {
+    this.fetchTasks()
   }
 }
 </script>

@@ -20,6 +20,9 @@ const actions = {
   },
   editTask: ({commit}, payload) => {
     commit(types.EDIT_TASK, payload)
+  },
+  fetchTasks: ({commit}) => {
+    commit(types.FETCH_TASKS)
   }
 }
 
@@ -27,10 +30,18 @@ const actions = {
 const mutations = {
   [types.ADD_TASK]: (state, task) => {
     state.tasks.push(task)
+    window.localStorage.setItem('task-tracker', JSON.stringify(state.tasks))
   },
   [types.EDIT_TASK]: (state, payload) => {
     let idx = state.tasks.indexOf(payload.oldValue)
     state.tasks.splice(idx, 1, payload.newValue)
+    window.localStorage.setItem('task-tracker', JSON.stringify(state.tasks))
+  },
+  [types.FETCH_TASKS]: (state) => {
+    let tasks = JSON.parse(window.localStorage.getItem('task-tracker'))
+    if (Array.isArray(tasks)) {
+      state.tasks = tasks
+    }
   }
 }
 
